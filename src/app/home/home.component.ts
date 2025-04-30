@@ -32,7 +32,7 @@ interface Course {
   standalone: true,
   imports: [CommonModule, MatTabsModule, RouterModule, HeaderComponent, FooterComponent],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.min.css']
 })
 export class HomeComponent {
   

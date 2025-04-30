@@ -7,7 +7,6 @@ module.exports = {
         ],
         defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
       }),
-      require('autoprefixer'),
       require('cssnano')({
         preset: 'default'
       })
