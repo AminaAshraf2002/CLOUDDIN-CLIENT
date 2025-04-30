@@ -1,0 +1,128 @@
+<div class="course-container">
+    <div class="course-banner">
+      <img src="https://clictadigital.com/wp-content/uploads/2023/11/best-social-media-platforms.png"
+        alt="Ecommerce Mastery Banner">
+    </div>
+  
+    <div class="course-header">
+      <h1>{{ course.title }}</h1>
+      <div class="course-meta">
+        <div class="instructor">Instructor: <span class="instructor-name">{{ course.author }}</span></div>
+        <div class="duration">Duration: {{ course.duration }}</div>
+      </div>
+    </div>
+  
+    <mat-tab-group (selectedTabChange)="onTabChange($event)">
+      <mat-tab label="Day 1">
+        <div class="course-content">
+          <h2>Day 1: {{ course.days[0].title }}</h2>
+  
+          <div class="video-player" (click)="navigateToRegister()">
+            <img [src]="course.days[0].videoThumbnail" alt="Video Thumbnail" class="video-thumbnail">
+            <div class="play-icon">&#9658;</div>
+          </div>
+  
+          <div class="lesson-info">
+            <h3>Today's Lesson</h3>
+            <p>{{ course.days[0].description }}</p>
+          </div>
+  
+          <div class="topics-covered">
+            <h3>Topics Covered</h3>
+            <ul>
+              <li *ngFor="let topic of course.days[0].topics">{{ topic }}</li>
+            </ul>
+          </div>
+  
+          <div class="course-description">
+            <h3>Course Description</h3>
+            <p>{{ course.description }}</p>
+          </div>
+        </div>
+      </mat-tab>
+  
+      <mat-tab label="Day 2">
+        <div class="course-content">
+          <h2>Day 2: {{ course.days[1].title }}</h2>
+  
+          <div class="video-player" (click)="navigateToRegister()">
+            <img [src]="course.days[1].videoThumbnail" alt="Video Thumbnail" class="video-thumbnail">
+            <div class="play-icon">&#9658;</div>
+          </div>
+  
+          <div class="lesson-info">
+            <h3>Today's Lesson</h3>
+            <p>{{ course.days[1].description }}</p>
+          </div>
+  
+          <div class="topics-covered">
+            <h3>Topics Covered</h3>
+            <ul>
+              <li *ngFor="let topic of course.days[1].topics">{{ topic }}</li>
+            </ul>
+          </div>
+  
+          <div class="course-description">
+            <h3>Course Description</h3>
+            <p>{{ course.description }}</p>
+          </div>
+        </div>
+      </mat-tab>
+  
+      <mat-tab label="Day 3">
+        <div class="course-content">
+          <h2>Day 3: {{ course.days[2].title }}</h2>
+  
+          <div class="video-player" (click)="navigateToRegister()">
+            <img [src]="course.days[2].videoThumbnail" alt="Video Thumbnail" class="video-thumbnail">
+            <div class="play-icon">&#9658;</div>
+          </div>
+  
+          <div class="lesson-info">
+            <h3>Today's Lesson</h3>
+            <p>{{ course.days[2].description }}</p>
+          </div>
+  
+          <div class="topics-covered">
+            <h3>Topics Covered</h3>
+            <ul>
+              <li *ngFor="let topic of course.days[2].topics">{{ topic }}</li>
+            </ul>
+          </div>
+  
+          <div class="course-description">
+            <h3>Course Description</h3>
+            <p>{{ course.description }}</p>
+          </div>
+        </div>
+      </mat-tab>
+  
+      <mat-tab label="Day 4">
+        <div class="course-content">
+          <h2>Day 4: {{ course.days[3].title }}</h2>
+  
+          <div class="video-player" (click)="navigateToRegister()">
+            <img [src]="course.days[3].videoThumbnail" alt="Video Thumbnail" class="video-thumbnail">
+            <div class="play-icon">&#9658;</div>
+          </div>
+  
+          <div class="lesson-info">
+            <h3>Today's Lesson</h3>
+            <p>{{ course.days[3].description }}</p>
+          </div>
+  
+          <div class="topics-covered">
+            <h3>Topics Covered</h3>
+            <ul>
+              <li *ngFor="let topic of course.days[3].topics">{{ topic }}</li>
+            </ul>
+          </div>
+  
+          <div class="course-description">
+            <h3>Course Description</h3>
+            <p>{{ course.description }}</p>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>

@@ -1,0 +1,206 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<div class="admin-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo-area">
+            <img src="assets/images/logo.png" alt="ClouddIn Logo" class="logo">
+            <span class="logo-text">ClouddIn Admin</span>
+        </div>
+
+        <nav class="menu">
+            <a href="admin/dashboard" class="menu-item active">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="admin/user" class="menu-item">
+                <i class="fas fa-users"></i>
+                <span>User Management</span>
+            </a>
+            <!-- <a href="admin/courses" class="menu-item">
+                <i class="fas fa-book"></i>
+                <span>Courses Management</span>
+            </a> -->
+            <a href="admin/categories" class="menu-item">
+                <i class="fas fa-list"></i>
+                <span>Categories Management</span>
+            </a>
+            <a href="admin/lessons" class="menu-item">
+                <i class="fas fa-video"></i>
+                <span>Lessons Management</span>
+            </a>
+            <a href="javascript:void(0)" class="menu-item" (click)="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Top Header -->
+        <!-- Top Header -->
+        <header class="top-header">
+            <h1>Admin Dashboard</h1>
+            <div class="admin-profile">
+                <span>{{ adminName }}</span>
+                <div class="avatar">{{ adminName.charAt(0) }}</div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Stats Cards -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <p class="stat-label">Total Users</p>
+                        <p class="stat-value"></p>
+                    </div>
+                    <div class="stat-icon blue">
+                        <a href="/admin/user">
+                            <i class="fas fa-users"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <p class="stat-label">Categories</p>
+                        <p class="stat-value"></p>
+                    </div>
+                    <div class="stat-icon yellow">
+                        <a href="/admin/categories">
+                            <i class="fas fa-list"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <p class="stat-label">Lessons</p>
+                        <p class="stat-value"></p>
+                    </div>
+                    <div class="stat-icon green">
+                        <a href="/admin/lessons">
+                            <i class="fas fa-book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                
+            </div>
+
+            <!-- Recent Users Table -->
+            <!-- <div class="card">
+                <div class="card-header">
+                    <h2>Recent User Registrations</h2>
+                </div>
+                <div class="card-body">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Course</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Rahul Sharma</td>
+                                <td>rahulexample.com</td>
+                                <td>Digital Marketing</td>
+                                <td>15 Mar 2025</td>
+                                <td>
+                                    <span class="status-badge yellow">Pending</span>
+                                </td>
+                                <td>
+                                    <button class="btn-approve">Approve</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Priya Patel</td>
+                                <td>priyaexample.com</td>
+                                <td>SEO</td>
+                                <td>14 Mar 2025</td>
+                                <td>
+                                    <span class="status-badge green">Approved</span>
+                                </td>
+                                <td>
+                                    <button class="btn-view">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Amit Kumar</td>
+                                <td>amitexample.com</td>
+                                <td>Graphic Design</td>
+                                <td>14 Mar 2025</td>
+                                <td>
+                                    <span class="status-badge green">Approved</span>
+                                </td>
+                                <td>
+                                    <button class="btn-view">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sanjana Desai</td>
+                                <td>sanjanaexample.com</td>
+                                <td>Ecommerce Mastery</td>
+                                <td>13 Mar 2025</td>
+                                <td>
+                                    <span class="status-badge yellow">Pending</span>
+                                </td>
+                                <td>
+                                    <button class="btn-approve">Approve</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> -->
+
+            <!-- Popular Courses Section -->
+            <!-- <div class="card">
+                <div class="card-header">
+                    <h2>Popular Courses</h2>
+                </div>
+                <div class="card-body">
+                    <div class="course-list">
+                        <div class="course-item">
+                            <div class="course-info">
+                                <h3>Digital Marketing Masterclass</h3>
+                                <p>48 enrollments</p>
+                            </div>
+                            <div class="course-revenue">
+                                <p class="revenue-amount">₹33,552</p>
+                                <p class="revenue-label">Revenue</p>
+                            </div>
+                        </div>
+                        <div class="course-item">
+                            <div class="course-info">
+                                <h3>Graphic Designing Pro</h3>
+                                <p>32 enrollments</p>
+                            </div>
+                            <div class="course-revenue">
+                                <p class="revenue-amount">₹19,168</p>
+                                <p class="revenue-label">Revenue</p>
+                            </div>
+                        </div>
+                        <div class="course-item">
+                            <div class="course-info">
+                                <h3>Ecommerce Mastery</h3>
+                                <p>29 enrollments</p>
+                            </div>
+                            <div class="course-revenue">
+                                <p class="revenue-amount">₹23,171</p>
+                                <p class="revenue-label">Revenue</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,313 @@
+<!-- src/app/admin/lessons/lessons.component.html -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="admin-container">
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Content Area -->
+    <div class="content-area">
+      <!-- Loading Indicator -->
+      <div class="loading-overlay" *ngIf="isLoading">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+      </div>
+      
+      <!-- Error Message -->
+      <div class="error-message" *ngIf="error">
+        <p>{{ error }}</p>
+        <button class="retry-btn" (click)="loadCourses()">Retry</button>
+      </div>
+      
+      <!-- Header with Search and Filters -->
+      <div class="header-actions">
+        <div class="search-filters">
+          <input 
+            type="text" 
+            placeholder="Search lessons..." 
+            class="search-input"
+            [(ngModel)]="searchTerm"
+          >
+          <select 
+            class="filter-select"
+            [(ngModel)]="selectedCourse"
+          >
+            <option value="">All Courses</option>
+            <option *ngFor="let course of courses" [value]="course.title || ''">{{ course.title || 'Unnamed Course' }}</option>
+          </select>
+        </div>
+        <button 
+          class="add-lesson-btn"
+          (click)="openAddLessonModal()"
+        >
+          <i class="fas fa-plus"></i>
+          Add New Lesson
+        </button>
+      </div>
+      
+      <!-- Lessons Container -->
+      <div class="lessons-container">
+        <div 
+          class="course-section" 
+          *ngFor="let course of courses"
+          [hidden]="selectedCourse && selectedCourse !== (course.title || '') || getLessonsByCourse(course.title || '').length === 0"
+        >
+          <div class="course-header">
+            <div class="course-title">
+              <div>
+                <h2 class="category-name">{{ course.title || 'Unnamed Course' }}</h2>
+              </div>
+            </div>
+          </div>
+          
+          <table class="lessons-table">
+            <thead>
+              <tr>
+                <th>Lesson</th>
+                <th>Category</th>
+                <th>Day</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr 
+                *ngFor="let lesson of getLessonsByCourse(course.title || '')"
+              >
+                <td>
+                  <div class="lesson-details">
+                    <div class="lesson-thumbnail">
+                      <img 
+                        [src]="extractYoutubeThumbnail(lesson.videoUrl)"
+                        alt="{{ lesson.title }} Thumbnail"
+                      >
+                    </div>
+                    <div class="lesson-text">
+                      <span class="lesson-title">{{ lesson.title }}</span>
+                      <p class="lesson-description">{{ lesson.description }}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>{{ getSubcategoryForLesson(lesson) }}</td>
+                <td>Day {{ lesson.day }}</td>
+                <td>
+                  <div class="action-buttons">
+                    <button 
+                      class="action-btn view-btn"
+                      (click)="openEditLessonModal(lesson)"
+                    >
+                      View
+                    </button>
+                    <button 
+                      class="action-btn edit-btn"
+                      (click)="openEditLessonModal(lesson)"
+                    >
+                      Edit
+                    </button>
+                    <button 
+                      class="action-btn delete-btn"
+                      (click)="deleteLesson(lesson.id!)"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- No Lessons Message -->
+      <div class="empty-state" *ngIf="filteredLessons.length === 0 && courses.length > 0 && !isLoading">
+        <div class="message-container">
+          <i class="fas fa-video"></i>
+          <h3>No Lessons Found</h3>
+          <p>No lessons match your current filters or no lessons have been added yet.</p>
+          <button class="add-btn" (click)="openAddLessonModal()">
+            Add Your First Lesson
+          </button>
+        </div>
+      </div>
+      
+      <!-- Pagination -->
+      <div class="pagination" *ngIf="totalPages > 1">
+        <div class="page-controls">
+          <button 
+            class="page-nav" 
+            (click)="previousPage()"
+            [disabled]="currentPage === 1"
+          >
+            Previous
+          </button>
+          <button 
+            *ngFor="let page of [].constructor(totalPages); let i = index"
+            class="page-btn" 
+            [class.active]="currentPage === i + 1"
+            (click)="currentPage = i + 1"
+          >
+            {{ i + 1 }}
+          </button>
+          <button 
+            class="page-nav" 
+            (click)="nextPage()"
+            [disabled]="currentPage === totalPages"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add/Edit Lesson Modal -->
+  <div *ngIf="isAddLessonModalOpen || isEditLessonModalOpen" class="modal-backdrop">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          {{ isEditLessonModalOpen ? 'Edit' : 'Add' }} Lesson
+        </h3>
+        <button class="modal-close" (click)="closeModal()">
+          &times;
+        </button>
+      </div>
+      
+      <div class="modal-body" *ngIf="currentLesson">
+        <div class="form-group">
+          <label class="form-label">Course</label>
+          <select 
+            class="form-select" 
+            [(ngModel)]="selectedCourse"
+            (change)="onCourseChange(selectedCourse)"
+          >
+            <option value="" disabled>Select Course</option>
+            <option *ngFor="let course of courses" [value]="course.title || ''">
+              {{ course.title || 'Unnamed Course' }}
+            </option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select 
+            class="form-select" 
+            [(ngModel)]="currentLesson.subcategoryId"
+          >
+            <option value="" disabled>Select Category</option>
+            <option 
+              *ngFor="let subcat of getSubcategoriesForCourse(getCourseIdByName(selectedCourse))" 
+              [value]="subcat.id"
+            >
+              {{ subcat.title || 'Unnamed Category' }}
+            </option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Day Number</label>
+          <input 
+            type="number" 
+            class="form-input" 
+            [(ngModel)]="currentLesson.day"
+            min="1"
+            max="30"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Lesson Title</label>
+          <input 
+            type="text" 
+            class="form-input" 
+            [(ngModel)]="currentLesson.title"
+            placeholder="Enter lesson title"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Lesson Description</label>
+          <textarea 
+            class="form-textarea" 
+            [(ngModel)]="currentLesson.description"
+            placeholder="Enter lesson description"
+          ></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Topics</label>
+          <div class="topic-input-container">
+            <input 
+              type="text" 
+              class="topic-input" 
+              #topicInput 
+              placeholder="Enter a topic"
+            >
+            <button 
+              type="button" 
+              class="add-topic-btn"
+              (click)="addTopic(topicInput)"
+            >
+              Add Topic
+            </button>
+          </div>
+          
+          <div class="topic-list">
+            <div 
+              class="topic-item" 
+              *ngFor="let topic of currentLesson.topics; let i = index"
+            >
+              {{ topic }}
+              <button 
+                class="remove-topic-btn"
+                (click)="removeTopic(i)"
+              >
+                ✕
+              </button>
+            </div>
+            <div *ngIf="!currentLesson.topics || currentLesson.topics.length === 0" class="no-topics">
+              No topics added yet
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Video URL</label>
+          <input 
+            type="text" 
+            class="form-input" 
+            [(ngModel)]="currentLesson.videoUrl"
+            placeholder="Enter YouTube video URL"
+          >
+          <div class="video-preview" *ngIf="currentLesson.videoUrl">
+            <div class="thumbnail-preview">
+              <img 
+                [src]="extractYoutubeThumbnail(currentLesson.videoUrl)" 
+                alt="Video Thumbnail"
+              >
+            </div>
+            <iframe 
+              width="100%" 
+              height="300" 
+              [src]="sanitizeVideoUrl(currentLesson.videoUrl)" 
+              frameborder="0" 
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button 
+          class="btn-cancel" 
+          (click)="closeModal()"
+        >
+          Cancel
+        </button>
+        <button 
+          class="btn-save" 
+          (click)="saveLesson()"
+        >
+          {{ isEditLessonModalOpen ? 'Update' : 'Add' }} Lesson
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

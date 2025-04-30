@@ -1,0 +1,80 @@
+<div class="dashboard-container">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-container">
+    <p>Loading course details...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage" class="error-container">
+    <p>{{ errorMessage }}</p>
+    <button (click)="loadLesson()" class="retry-button">Try Again</button>
+  </div>
+
+  <!-- Main Content -->
+  <ng-container *ngIf="!isLoading && !errorMessage && lesson && course && subcategory">
+    <main class="course-container">
+      <!-- Back Navigation -->
+      <a 
+        (click)="goBack()"
+        class="back-link"
+      >
+        <i class="fas fa-arrow-left"></i> Back to Subcategories
+      </a>
+
+      <!-- Course Header -->
+      <div class="course-header">
+        <h2>{{ subcategory.title || 'Subcategory' }}</h2>
+        <p>Instructor: {{ course.instructor || 'Unknown' }}</p>
+      </div>
+
+      <!-- Lesson Viewer Container -->
+      <div class="lesson-viewer-container">
+        <!-- Material Tabs for Lessons -->
+        <mat-tab-group 
+          [selectedIndex]="selectedTabIndex"
+          (selectedTabChange)="onTabChanged($event.index)"
+          color="primary"
+        >
+          <mat-tab *ngFor="let lessonItem of lessons" [label]="'Day ' + (lessonItem.day || 'N/A')">
+            <div class="lesson-content" *ngIf="lesson && isCurrentLesson(lessonItem.id)">
+              <h3>{{ getLessonTitle(lesson) }}</h3>
+
+              <!-- Direct iframe approach -->
+              <div class="video-container" *ngIf="lesson.videoUrl">
+                <p *ngIf="!safeVideoUrl">Loading video URL...</p>
+                <iframe 
+                  *ngIf="safeVideoUrl"
+                  [src]="safeVideoUrl"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  width="100%"
+                  height="400">
+                </iframe>
+              </div>
+
+              <!-- Lesson Description - Always show -->
+              <div class="lesson-description">
+                <h4>Description</h4>
+                <p>{{ getLessonDescription(lesson) }}</p>
+              </div>
+
+              <!-- Lesson Topics - Always show, even if empty -->
+              <div class="lesson-topics">
+                <h4>Topics Covered</h4>
+                <ul *ngIf="getLessonTopics(lesson).length > 0">
+                  <li *ngFor="let topic of getLessonTopics(lesson)">
+                    {{ topic }}
+                  </li>
+                </ul>
+                <p *ngIf="getLessonTopics(lesson).length === 0" class="no-topics">
+                  No specific topics listed for this lesson.
+                </p>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </main>
+  </ng-container>
+</div>

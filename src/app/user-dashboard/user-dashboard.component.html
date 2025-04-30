@@ -1,0 +1,92 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="CloudIn">
+      </div>
+      <div class="header-actions">
+        <input type="text" placeholder="Search" class="search-input">
+        
+        <div class="user-profile">
+          <span class="user-initial">{{ getUserInitial() }}</span>
+          <span class="user-name">{{ userName }}</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <section class="welcome-banner">
+      <div class="banner-content">
+        <h1>Hi {{ userName }},</h1>
+        <h2>Welcome to ClouddIn</h2>
+        <p>You are enrolled in: <strong>{{ selectedCourse }}</strong></p>
+        <a href="/user/dashboard" class="old-purchases-link">You are in premium version</a>
+      </div>
+    </section>
+
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="loading-container">
+      <p>Loading your course...</p>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="error" class="error-container">
+      <p>{{ error }}</p>
+    </div>
+
+    <section *ngIf="!isLoading && !error" class="courses-section">
+      <div class="section-header">
+        <h3>Your Course</h3>
+        <span class="course-count">{{ userCourses.length }}</span>
+      </div>
+
+      <div class="courses-grid">
+        <div *ngFor="let course of userCourses" class="course-card">
+          <div class="course-thumbnail">
+            <!-- Use the getThumbnailUrl method to ensure valid image URL -->
+            <img [src]="getThumbnailUrl(course)" [alt]="course.title"
+                 onerror="this.src='assets/images/default-course.jpg'; this.onerror=null;">
+            <div class="course-progress">
+              <div class="progress-bar" [style.width.%]="course.progress || 0"></div>
+            </div>
+          </div>
+          <div class="course-details">
+            <h4>{{ course.title }}</h4>
+            <!-- Use safe navigation and fallback for lessons -->
+            <p>{{ course['lessons'] || 'Multiple' }} Lessons</p>
+            <div class="course-actions">
+              <button class="continue-btn" (click)="continueCourse(course.id)">Continue</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Show a message if no courses are found -->
+        <div *ngIf="userCourses.length === 0" class="no-courses-message">
+          <p>No courses found for your enrollment: {{ selectedCourse }}</p>
+          <p>Please contact support if you believe this is an error.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="dashboard-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="about">About Us</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Refund Policy</a>
+      </div>
+      <div class="copyright">
+        Copyright © 2025 ClouddIn
+      </div>
+      <div class="powered-by">
+        Powered by
+        <a href="https://www.inspitetech.com/index.html#" target="_blank" rel="noopener noreferrer" class="no-underline">
+          <span>Inspite Technology</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+</div>

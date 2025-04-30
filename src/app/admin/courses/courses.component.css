@@ -1,0 +1,369 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f1f5f9;
+}
+
+.admin-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background-color: #1e293b;
+    color: white;
+    height: 100vh;
+}
+
+.logo-area {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    background-color: #0f172a;
+    border-bottom: 1px solid #334155;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.menu {
+    margin-top: 20px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.menu-item i {
+    width: 20px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.menu-item:hover {
+    background-color: #334155;
+    color: white;
+}
+
+.menu-item.active {
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Main content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    height: 70px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.top-header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+}
+
+.admin-profile span {
+    margin-right: 10px;
+    color: #4b5563;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #6366f1;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* Course Management Specific Styles */
+.content-area {
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.search-filters {
+    display: flex;
+    gap: 15px;
+}
+
+.search-input {
+    width: 300px;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.filter-select {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 14px;
+}
+
+.add-course-btn {
+    padding: 8px 16px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.add-course-btn:hover {
+    background-color: #2563eb;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.course-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.course-image {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.course-content {
+    padding: 16px;
+}
+
+.course-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.course-instructor {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.course-instructor span {
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.course-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.course-rating {
+    display: flex;
+    align-items: center;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.course-rating i {
+    color: #fbbf24;
+    margin-right: 4px;
+}
+
+.course-enrollments {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.course-price {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.current-price {
+    font-size: 18px;
+    font-weight: 600;
+    color: #3b82f6;
+}
+
+.original-price {
+    font-size: 14px;
+    color: #6b7280;
+    text-decoration: line-through;
+    margin-left: 8px;
+}
+
+.course-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn, .delete-btn, .view-btn {
+    flex: 1;
+    padding: 8px 0;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.edit-btn {
+    background-color: #dbeafe;
+    color: #2563eb;
+}
+
+.edit-btn:hover {
+    background-color: #bfdbfe;
+}
+
+.delete-btn {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.delete-btn:hover {
+    background-color: #fecaca;
+}
+
+.view-btn {
+    background-color: #f3f4f6;
+    color: #4b5563;
+}
+
+.view-btn:hover {
+    background-color: #e5e7eb;
+}
+
+.premium-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: #fef9c3;
+    color: #ca8a04;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.page-info {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.page-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.page-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: white;
+    color: #6b7280;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.page-btn.active {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+.page-btn:hover:not(.active) {
+    background-color: #f3f4f6;
+}
+
+.page-nav {
+    padding: 0 10px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: white;
+    color: #6b7280;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.page-nav:hover {
+    background-color: #f3f4f6;
+}

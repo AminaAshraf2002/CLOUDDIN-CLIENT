@@ -1,0 +1,290 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f5f7;
+}
+
+.dashboard-container {
+    max-width: 1400px; /* Increased max-width for better fit */
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Added subtle shadow */
+}
+
+/* Header Styles */
+.dashboard-header {
+    position: fixed;  /* Fixes it at the top */
+    top: 0;  /* Aligns it to the top */
+    left: 0;  /* Aligns it to the left */
+    width: 100%;  /* Makes it span full width */
+    background-color: white;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;  /* Ensures it stays on top */
+}
+
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 150px;
+    position: fixed;
+    margin-top: -75px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-input {
+    padding: 8px 12px;
+    border: 1px solid #87CEEB;
+    border-radius: 4px;
+    width: 250px;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #0a2c3b;
+}
+
+.dark-mode-toggle {
+    background-color: #87CEEB;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+    background-color: #0a2c3b;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-initial {
+    background-color: #0a2c3b;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Welcome Banner */
+.welcome-banner {
+    background: linear-gradient(135deg, #0a2c3b, #87CEEB);
+    color: white;
+    padding: 60px 50px;
+}
+
+.banner-content h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-top: 25px;
+}
+
+.banner-content h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.old-purchases-link {
+    color: white;
+    text-decoration: underline;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+/* Courses Section */
+.courses-section {
+    padding: 20px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h3 {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #0a2c3b;
+}
+
+.course-count {
+    background-color: #87CEEB;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+
+.view-all-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: #0a2c3b;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.view-all-btn:hover {
+    color: #87CEEB;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Increased minimum width */
+    gap: 20px;
+}
+
+.course-card {
+    border: 1px solid #87CEEB;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.course-card:hover {
+    box-shadow: 0 4px 15px rgba(10,44,59,0.2);
+    transform: translateY(-5px);
+}
+
+.course-thumbnail {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.course-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.course-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #e0e0e0;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #0a2c3b;
+}
+
+.course-details {
+    padding: 15px;
+}
+
+.course-details h4 {
+    margin-bottom: 10px;
+    color: #0a2c3b;
+}
+
+.continue-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #0a2c3b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.continue-btn:hover {
+    background-color: #87CEEB;
+}
+
+/* Footer */
+.dashboard-footer {
+    background-color: #f4f5f7;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    color: #0a2c3b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #87CEEB;
+}
+
+.powered-by {
+    margin-top: 10px;
+    color: #0a2c3b;
+}
+
+.powered-by span {
+    font-weight: bold;
+    color: #87CEEB;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .header-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.no-underline {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Keeps the text color same as parent */
+    font-weight: bold; /* Optional: Makes it stand out */
+}
+
+.no-underline:hover {
+    text-decoration: underline; /* Optional: Adds underline on hover */
+    color:  #87CEEB;
+}

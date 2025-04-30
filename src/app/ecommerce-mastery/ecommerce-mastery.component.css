@@ -1,0 +1,289 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* General Styles */
+:host {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Course Container */
+.course-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+/* Course Banner */
+.course-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.course-banner img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.course-banner img:hover {
+  transform: scale(1.05);
+}
+
+/* Course Header */
+.course-header {
+  padding: 20px;
+  text-align: center;
+}
+
+.course-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.course-meta {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.instructor-name {
+  font-weight: 600;
+  color: #444;
+}
+
+/* Course Content */
+.course-content {
+  padding: 20px;
+}
+
+.course-content h2 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin-bottom: 30px;
+  font-size: larger;
+  color: #2c3e50;
+}
+
+/* Video Player */
+.video-player {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.video-player:hover .video-thumbnail {
+  transform: scale(1.05);
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px 30px;
+  border-radius: 50%;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+}
+
+.video-player:hover .play-icon {
+  background: rgba(0, 0, 0, 0.8);
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Lesson Info, Topics Covered & Description */
+.lesson-info, .topics-covered, .course-description {
+  background: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  transform: translateY(10px);
+  opacity: 0;
+  animation: slideUp 0.8s ease-in-out forwards;
+}
+
+.topics-covered {
+  animation-delay: 0.2s;
+}
+
+.course-description {
+  animation-delay: 0.4s;
+}
+
+.lesson-info:hover, .topics-covered:hover, .course-description:hover {
+  background: #f2f4f6;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.lesson-info h3, .topics-covered h3, .course-description h3 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: larger;
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.topics-covered ul {
+  padding-left: 20px;
+  margin-bottom: 0;
+}
+
+.topics-covered li {
+  margin-bottom: 8px;
+  position: relative;
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+.topics-covered li:before {
+  content: "•";
+  color: #3f51b5;
+  font-weight: bold;
+  position: absolute;
+  left: -10px;
+}
+
+/* Customizing Material Tabs */
+::ng-deep .mat-mdc-tab-header {
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  color: #3f51b5;
+  font-weight: 600;
+}
+
+::ng-deep .mat-mdc-tab-group {
+  overflow: hidden;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .course-container {
+    margin: 20px auto;
+    padding: 15px;
+  }
+  
+  .course-banner img {
+    height: 200px;
+  }
+  
+  .course-meta {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .course-header h1 {
+    font-size: 24px;
+  }
+  
+  .video-player {
+    height: 300px;
+  }
+  
+  .lesson-info, .topics-covered, .course-description {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .course-header h1 {
+    font-size: 20px;
+  }
+  
+  .course-meta {
+    font-size: 12px;
+  }
+  
+  .video-player {
+    height: 200px;
+  }
+  
+  .play-icon {
+    font-size: 40px;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .lesson-info, .topics-covered, .course-description {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  .course-content h2 {
+    font-size: 18px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

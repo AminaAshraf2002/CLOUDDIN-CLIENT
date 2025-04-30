@@ -1,0 +1,404 @@
+/* General Styles with Modern Typography */
+.contact-container {
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 30px;
+  background-color: #f5f9fc;
+  color: #333;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background decoration */
+.contact-container::before {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(135, 206, 235, 0.1) 0%, rgba(135, 206, 235, 0) 70%);
+  top: -100px;
+  right: -100px;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.contact-container::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(135, 206, 235, 0.1) 0%, rgba(135, 206, 235, 0) 70%);
+  bottom: -100px;
+  left: -100px;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* Links with smooth hover effect */
+.no-underline {
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.no-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #3498db;
+  transition: width 0.3s ease;
+}
+
+.no-underline:hover {
+  color: #3498db;
+}
+
+.no-underline:hover::after {
+  width: 100%;
+}
+
+/* Modern Banner with Parallax Effect */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  background: url('/assets/images/cont.jpeg') no-repeat center center/cover;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 50px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.banner .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(11, 72, 107, 0.8), rgba(135, 206, 235, 0.6));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner h2 {
+  color: white;
+  font-size: 48px;
+  font-weight: 800;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transform: translateY(0);
+  transition: transform 0.5s ease;
+  position: relative;
+}
+
+.banner:hover h2 {
+  transform: translateY(-5px);
+}
+
+.banner h2::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* Contact Section with Card Design */
+.contact-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Contact Info & Form with modern design */
+.contact-info, .contact-form {
+  width: 48%;
+  background: white;
+  padding: 35px;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-info:hover, .contact-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Decorative accent border */
+.contact-info::before, .contact-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(to bottom, #3498db, #87CEEB);
+  border-radius: 5px 0 0 5px;
+}
+
+.contact-info h3, .contact-form h3 {
+  color: #3498db;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.contact-info h3::after, .contact-form h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #87CEEB);
+  border-radius: 2px;
+}
+
+.contact-info h4 {
+  color: #2c3e50;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  background-color: white;
+}
+
+textarea {
+  height: 120px;
+  resize: none;
+}
+
+/* Modern Animated Button */
+.animated-button {
+  background: linear-gradient(135deg, #3498db, #87CEEB);
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.animated-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+  transition: left 0.7s ease;
+  z-index: -1;
+}
+
+.animated-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+}
+
+.animated-button:hover::before {
+  left: 100%;
+}
+
+/* Location Section with Map-like design */
+.location {
+  margin-top: 40px;
+  padding: 35px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.location::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #3498db, #87CEEB);
+}
+
+.location h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Enhanced Icon Animation */
+.contact-info h4 i, .location h3 i {
+  font-size: 22px;
+  color: #3498db;
+  transition: all 0.3s ease;
+  background: rgba(52, 152, 219, 0.1);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.contact-info h4:hover i, .location h3:hover i {
+  transform: scale(1.1) rotate(10deg);
+  background: rgba(52, 152, 219, 0.2);
+  color: #2c3e50;
+}
+
+.contact-info i {
+  color: #3498db;
+}
+
+/* Responsive Design with improved mobile experience */
+@media (max-width: 1024px) {
+  .banner {
+    height: 380px;
+    background-attachment: scroll;
+  }
+  
+  .banner h2 {
+    font-size: 40px;
+  }
+  
+  .contact-info, .contact-form {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    flex-direction: column;
+  }
+  
+  .contact-info, .contact-form {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .banner {
+    height: 320px;
+  }
+  
+  .banner h2 {
+    font-size: 36px;
+  }
+  
+  .contact-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    height: 280px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .banner h2 {
+    font-size: 28px;
+    padding: 15px;
+  }
+  
+  .banner h2::after {
+    width: 60px;
+    bottom: -10px;
+  }
+  
+  .contact-container {
+    padding: 15px;
+  }
+  
+  .contact-info, .contact-form, .location {
+    padding: 25px;
+    border-radius: 12px;
+  }
+  
+  .contact-info h3, .contact-form h3, .location h3 {
+    font-size: 20px;
+  }
+  
+  .contact-info h4 {
+    font-size: 16px;
+  }
+  
+  .form-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  input, select, textarea {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  
+  .animated-button {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+}

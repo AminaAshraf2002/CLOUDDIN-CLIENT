@@ -1,0 +1,124 @@
+<!-- user.component.html - Complete and improved template -->
+<div class="admin-container">
+    <div class="main-content">
+      <header class="top-header">
+        <h1>User Management</h1>
+      </header>
+      
+      <div class="content-area">
+        <!-- Search and Filter Section -->
+        <div class="header-actions">
+          <input 
+            type="text" 
+            placeholder="Search users..." 
+            class="search-input"
+            [(ngModel)]="searchTerm"
+            (input)="applyFilters()"
+          >
+          
+          <select 
+            [(ngModel)]="statusFilter"
+            (change)="applyFilters()"
+            class="filter-select"
+          >
+            <option *ngFor="let status of statusOptions" 
+                    [value]="status.value">
+              {{ status.label }}
+            </option>
+          </select>
+          
+          <select 
+            [(ngModel)]="courseFilter"
+            (change)="applyFilters()"
+            class="filter-select"
+          >
+            <option *ngFor="let course of courseOptions" 
+                    [value]="course.value">
+              {{ course.label }}
+            </option>
+          </select>
+        </div>
+  
+        <!-- Loading Indicator -->
+        <div *ngIf="isLoading" class="loading-spinner">
+          Loading users...
+        </div>
+  
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+  
+        <!-- User Table -->
+        <div *ngIf="!isLoading">
+          <table class="user-table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Course</th>
+                <th>Registration Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of filteredUsers; let i = index">
+                <td>
+                  <div class="user-info">
+                    <div class="user-avatar">
+                      {{ (user?.name && user.name.length > 0) ? user.name.charAt(0).toUpperCase() : '?' }}
+                    </div>
+                    <div class="user-details">
+                      <span>{{ user?.name }}</span>
+                      <span>{{ user?.email }}</span>
+                      <!-- Debug info (can be removed in production) -->
+                      <small style="color: #666; font-size: 11px;">{{ getDebugInfo(user) }}</small>
+                    </div>
+                  </div>
+                </td>
+                <td>{{ user?.course }}</td>
+                <td>{{ user?.registrationDate | date:'mediumDate' }}</td>
+                <td>
+                  <span 
+                    class="status-badge"
+                    [ngClass]="'status-' + (user?.status || 'unknown')"
+                  >
+                    {{ user?.status || 'Unknown' }}
+                  </span>
+                </td>
+                <td>
+                  <div class="action-buttons">
+                    <!-- Approve button for pending users WITH an ID -->
+                    <button 
+                      *ngIf="user?.status === 'pending'"
+                      (click)="approveUser(user.id)"
+                      class="action-btn approve-btn"
+                      [disabled]="!user.id"
+                      [title]="user.id ? 'Approve this user' : 'Cannot approve: No user ID'"
+                    >
+                      Approve
+                    </button>
+                    
+                    <!-- Delete button -->
+                    <button 
+                      (click)="deleteUser(user.id)"
+                      class="action-btn delete-btn"
+                      [disabled]="!user.id"
+                      [title]="user.id ? 'Delete this user' : 'Cannot delete: No user ID'"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <!-- No Users Message -->
+          <div *ngIf="!isLoading && filteredUsers.length === 0" class="no-users-message">
+            No users found matching the current filters.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,290 @@
+.main-footer {
+  background-color: #104459;
+  color: #fff;
+  padding: 60px 0 20px;
+  position: relative;
+}
+
+/* Add a subtle wave pattern to the footer */
+.main-footer::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23104459'/%3E%3C/svg%3E");
+  background-size: cover;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-col {
+  margin-bottom: 20px;
+}
+
+.about-column {
+  max-width: 300px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.footer-logo img {
+  height: 50px;
+  margin-right: 10px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-logo span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.footer-description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 18px;
+  transition: all 0.3s;
+}
+
+.social-links a:hover {
+  background-color: #60a2ea;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(96, 162, 234, 0.4);
+}
+
+.footer-col h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+  color: #87CEEB;
+}
+
+.footer-col h3:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #60a2ea;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  display: inline-block;
+  position: relative;
+}
+
+.footer-links a:before {
+  content: "›";
+  margin-right: 8px;
+  color: #60a2ea;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s;
+}
+
+.footer-links a:hover {
+  color: #fff;
+  transform: translateX(5px);
+}
+
+.footer-links a:hover:before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.contact-info {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.contact-info li {
+  display: flex;
+  margin-bottom: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+ 
+}
+.whatsapp-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.whatsapp-link:hover {
+  color: #25D366; /* WhatsApp brand color */
+}
+
+/* You can also add this if you want to style all links in the contact info */
+.contact-info a {
+  text-decoration: none;
+  color: inherit;
+}
+.contact-info i {
+  width: 20px;
+  margin-right: 10px;
+  color: #87CEEB;
+}
+
+.newsletter h4 {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #87CEEB;
+}
+
+.newsletter-form {
+  display: flex;
+  height: 45px;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 0 15px;
+  border: none;
+  border-radius: 30px 0 0 30px;
+  font-size: 0.9rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: none;
+}
+
+.newsletter-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-form button {
+  width: 50px;
+  background-color: #60a2ea;
+  color: white;
+  border: none;
+  border-radius: 0 30px 30px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.newsletter-form button:hover {
+  background-color: #87CEEB;
+  box-shadow: 0 0 15px rgba(135, 206, 235, 0.5);
+}
+
+.footer-bottom {
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center; /* Centers text */
+  white-space: nowrap; /* Prevents line breaks */
+}
+
+.copyright p {
+  margin: 0; /* Removes extra spacing */
+  display: flex;
+  justify-content: center; /* Ensures it stays centered */
+  align-items: center;
+  gap: 5px; /* Adds a small gap for spacing */
+  flex-wrap: wrap; /* Ensures responsiveness on smaller screens */
+}
+
+.no-underline {
+  text-decoration: none; /* Removes underline */
+  color: inherit; /* Keeps text color the same */
+  font-weight: bold; /* Optional: Makes it stand out */
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-bottom-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.3s;
+}
+
+.footer-bottom-links a:hover {
+  color: #87CEEB;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .footer-bottom-links {
+    justify-content: center;
+  }
+  
+  .about-column {
+    max-width: 100%;
+  }
+}

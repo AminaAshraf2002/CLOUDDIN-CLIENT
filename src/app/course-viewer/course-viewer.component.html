@@ -1,0 +1,99 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <!-- Back Button -->
+      <div class="header-back-action">
+        <button 
+          class="back-button" 
+          (click)="goBack()"
+        >
+          <i class="fa fa-arrow-left"></i>
+        </button>
+      </div>
+
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="CloudIn">
+      </div>
+
+      <div class="header-actions">
+        <input type="text" placeholder="Search" class="search-input">
+        
+        <div class="user-profile">
+          <span class="user-initial">{{ getUserInitial() }}</span>
+          <span class="user-name">{{ userName }}</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Loading course details...</p>
+  </div>
+
+  <!-- Error State with Retry Button -->
+  <div *ngIf="error" class="error-container">
+    <p>{{ error }}</p>
+    <button class="retry-button" (click)="retryLoading()">
+      <i class="fa fa-refresh"></i> Try Again
+    </button>
+  </div>
+
+  <!-- Main Content -->
+  <ng-container *ngIf="!isLoading && !error && course">
+    <main class="dashboard-main">
+      <!-- Course Header Section -->
+      <section class="course-header-section">
+        <h1 class="course-title">{{ course.title }}</h1>
+      </section>
+      
+      <!-- Subcategories Section -->
+      <section class="subcategories-section">
+        <div class="section-header">
+          <h2 class="section-title">Course Categories</h2>
+          <span class="subcategory-count" *ngIf="subcategories.length > 0">
+            {{ subcategories.length }} Subcategories
+          </span>
+        </div>
+
+        <!-- No Subcategories Message -->
+        <div *ngIf="subcategories.length === 0" class="no-subcategories">
+          <p>No content available for this course yet.</p>
+        </div>
+
+        <!-- Subcategories Grid -->
+        <div class="subcategories-grid" *ngIf="subcategories.length > 0">
+          <div 
+            *ngFor="let subcategory of subcategories"
+            class="subcategory-card"
+          >
+            <!-- Add thumbnail image -->
+            <div class="subcategory-thumbnail" *ngIf="subcategory.thumbnail">
+              <img [src]="subcategory.thumbnail" [alt]="subcategory.title">
+            </div>
+            
+            <div class="subcategory-content">
+              <h4>{{ subcategory.title }}</h4>
+              <p class="subcategory-description">{{ subcategory.description }}</p>
+              <button 
+                class="start-btn"
+                (click)="startLearning(subcategory.id)"
+              >
+                Start Learning
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </ng-container>
+
+  <!-- Empty State when there's no course -->
+  <div *ngIf="!isLoading && !error && !course" class="empty-state">
+    <p>This course is not available. Please return to your dashboard.</p>
+    <button class="back-to-dashboard" (click)="goBack()">
+      Back to Dashboard
+    </button>
+  </div>
+</div>

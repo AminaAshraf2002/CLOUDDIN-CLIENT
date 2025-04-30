@@ -1,0 +1,869 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f1f5f9;
+}
+
+.admin-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background-color: #1e293b;
+    color: white;
+    height: 100vh;
+}
+
+.logo-area {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    background-color: #0f172a;
+    border-bottom: 1px solid #334155;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.menu {
+    margin-top: 20px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.menu-item i {
+    width: 20px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.menu-item:hover {
+    background-color: #334155;
+    color: white;
+}
+
+.menu-item.active {
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Main content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    height: 70px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.top-header h1{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size:25px;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+}
+
+.admin-profile span {
+    margin-right: 10px;
+    color: #4b5563;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #6366f1;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* Lesson Management Specific Styles */
+.content-area {
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.search-filters {
+    display: flex;
+    gap: 15px;
+}
+
+.search-input {
+    width: 300px;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.filter-select {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 14px;
+}
+
+.add-lesson-btn {
+    padding: 8px 16px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.add-lesson-btn:hover {
+    background-color: #2563eb;
+}
+
+.lessons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.course-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.course-header {
+    padding: 16px 20px;
+    background-color: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.course-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.category-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 5px;
+}
+
+.course-name {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.instructor-info {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.instructor-info span {
+    margin-left: 8px;
+}
+
+/* Material Tabs Customization */
+.mat-tab-group {
+    width: 100%;
+}
+
+.mat-tab-header {
+    background-color: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.mat-tab-labels {
+    display: flex;
+}
+
+.mat-tab-label {
+    padding: 0 24px;
+    height: 48px;
+    color: #6b7280;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.mat-tab-label-active {
+    color: #3b82f6;
+}
+
+.mat-ink-bar {
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    background-color: #3b82f6;
+    transition: left 0.3s;
+}
+
+.mat-tab-body {
+    display: none;
+}
+
+.lesson-content {
+    padding: 20px;
+}
+
+.lesson-details {
+    padding: 20px;
+    background-color: #f9fafb;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.lesson-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.lesson-description {
+    color: #4b5563;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.topics-list {
+    margin-top: 20px;
+}
+
+.topics-heading {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.topics-list ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    color: #4b5563;
+}
+
+.topics-list li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.video-container {
+    margin-top: 20px;
+}
+
+.video-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.video-frame {
+    width: 100%;
+    height: 400px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    background-color: #f3f4f6;
+    margin-bottom: 20px;
+}
+
+.lesson-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.action-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+}
+
+.edit-btn {
+    background-color: #dbeafe;
+    color: #2563eb;
+}
+
+.edit-btn:hover {
+    background-color: #bfdbfe;
+}
+
+.delete-btn {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.delete-btn:hover {
+    background-color: #fecaca;
+}
+
+.course-description {
+    padding: 20px;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 20px;
+}
+
+.description-heading {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.description-text {
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+/* Modal Styles for Add and Edit */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-container {
+    background-color: white;
+    border-radius: 8px;
+    width: 800px;
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #6b7280;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.modal-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-cancel {
+    padding: 8px 16px;
+    background-color: #f3f4f6;
+    color: #4b5563;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background-color: #e5e7eb;
+}
+
+.btn-save, .btn-delete {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-save {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.btn-save:hover {
+    background-color: #2563eb;
+}
+
+.btn-delete {
+    background-color: #dc2626;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #b91c1c;
+}
+
+/* Topics input style */
+.topic-input-container {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.topic-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px 0 0 6px;
+    font-size: 14px;
+}
+
+.add-topic-btn {
+    padding: 8px 12px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+}
+
+.topic-list {
+    margin-top: 10px;
+}
+
+.topic-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: #f3f4f6;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.remove-topic-btn {
+    background: none;
+    border: none;
+    color: #dc2626;
+    cursor: pointer;
+}
+/* Comprehensive Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    /* Global Adjustments */
+    body {
+      font-size: 14px;
+    }
+  
+    /* Admin Container */
+    .admin-container {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    /* Sidebar */
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+      overflow: visible;
+    }
+  
+    .logo-area {
+      padding: 15px;
+      justify-content: center;
+    }
+  
+    .logo {
+      width: 35px;
+      height: 35px;
+    }
+  
+    .logo-text {
+      font-size: 16px;
+      margin-left: 10px;
+    }
+  
+    /* Menu Navigation */
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 10px;
+    }
+  
+    .menu-item {
+      flex: 1;
+      min-width: 80px;
+      padding: 10px;
+      text-align: center;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .menu-item i {
+      margin-right: 0;
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+  
+    .menu-item span {
+      font-size: 12px;
+    }
+  
+    /* Main Content */
+    .main-content {
+      margin-left: 0;
+      width: 100%;
+      padding: 10px;
+    }
+  
+    /* Top Header */
+    .top-header {
+      flex-direction: column;
+      padding: 10px 15px;
+      height: auto;
+      align-items: center;
+    }
+  
+    .top-header h1 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  
+    .admin-profile {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .admin-profile span {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    .avatar {
+      margin-left: 0;
+    }
+  
+    /* Content Area */
+    .content-area {
+      padding: 15px;
+    }
+  
+    /* Header Actions */
+    .header-actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 15px;
+    }
+  
+    .search-filters {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .search-input,
+    .filter-select {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+    }
+  
+    .add-lesson-btn,
+    .add-category-btn {
+      width: 100%;
+      justify-content: center;
+      padding: 12px;
+      margin-top: 10px;
+    }
+  
+    /* Tables and Lists */
+    .categories-table,
+    .lessons-table {
+      width: 100%;
+      display: block;
+      overflow-x: auto;
+    }
+  
+    .categories-table th,
+    .categories-table td,
+    .lessons-table th,
+    .lessons-table td {
+      padding: 10px;
+      font-size: 13px;
+    }
+  
+    /* Course and Lesson Sections */
+    .course-section,
+    .lesson-section {
+      margin-bottom: 15px;
+    }
+  
+    .course-header,
+    .lesson-header {
+      padding: 12px 15px;
+    }
+  
+    .category-name,
+    .lesson-title {
+      font-size: 16px;
+    }
+  
+    .course-name,
+    .lesson-description {
+      font-size: 13px;
+    }
+  
+    /* Action Buttons */
+    .action-buttons,
+    .lesson-actions {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .action-btn,
+    .lesson-action-btn {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+    }
+  
+    /* Modal Styles */
+    .modal-container,
+    .categories-modal {
+      width: 95%;
+      max-width: 95%;
+      max-height: 95vh;
+      margin: 2.5%;
+      border-radius: 12px;
+    }
+  
+    .modal-header {
+      padding: 12px 15px;
+    }
+  
+    .modal-title {
+      font-size: 16px;
+    }
+  
+    .modal-body {
+      padding: 15px;
+    }
+  
+    .form-group {
+      margin-bottom: 15px;
+    }
+  
+    .form-label {
+      font-size: 14px;
+    }
+  
+    .form-input,
+    .form-select,
+    .form-textarea {
+      padding: 10px;
+      font-size: 14px;
+    }
+  
+    .modal-footer {
+      flex-direction: column;
+      gap: 10px;
+      padding: 12px 15px;
+    }
+  
+    .btn-cancel,
+    .btn-save,
+    .btn-delete {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+    }
+  
+    /* Video and Media */
+    .video-frame {
+      height: 250px;
+    }
+  
+    /* Pagination */
+    .pagination {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .page-controls {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .page-btn,
+    .page-nav {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+    }
+  
+    /* Tabs */
+    .mat-tab-header {
+      overflow-x: auto;
+    }
+  
+    .mat-tab-labels {
+      min-width: 100%;
+    }
+  
+    .mat-tab-label {
+      flex: 1;
+      min-width: auto;
+      padding: 12px;
+      font-size: 13px;
+    }
+  }
+  
+  /* Ultra Small Screens */
+  @media screen and (max-width: 375px) {
+    body {
+      font-size: 12px;
+    }
+  
+    .menu-item {
+      min-width: 70px;
+      padding: 8px;
+    }
+  
+    .menu-item i {
+      font-size: 16px;
+    }
+  
+    .menu-item span {
+      font-size: 10px;
+    }
+  
+    .top-header h1 {
+      font-size: 18px;
+    }
+  
+    .category-name,
+    .lesson-title {
+      font-size: 14px;
+    }
+  
+    .video-frame {
+      height: 200px;
+    }
+  
+    .form-input,
+    .form-select,
+    .form-textarea {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }
+  
+  /* Accessibility Enhancements */
+  @media screen and (max-width: 768px) {
+    /* Ensure touch targets are at least 44x44 pixels */
+    .menu-item,
+    .action-btn,
+    .page-btn,
+    .modal-close,
+    .add-lesson-btn {
+      min-height: 44px;
+      min-width: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }

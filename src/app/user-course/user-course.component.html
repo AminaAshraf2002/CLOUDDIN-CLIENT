@@ -1,0 +1,199 @@
+<div class="dashboard-container">
+    <header class="dashboard-header">
+      <div class="header-content">
+        <div class="back-button" (click)="goBack()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </div>
+        
+        <div class="logo">
+          <img src="assets/images/logo.png" alt="CloudIn">
+        </div>
+        
+        <div class="header-actions">
+          <input type="text" placeholder="Search" class="search-input">
+          
+          <div class="user-profile">
+            <span class="user-initial">N</span>
+            <span class="user-name">{{ userName }}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <div class="course-container">
+      <div class="course-banner">
+        <img src="https://d1u4v6449fgzem.cloudfront.net/wp-content/uploads/2020/11/17010121/11-Best-Affiliate-Programs-for-Beginners-to-Make-Money-Empire-Flippers-scaled.jpg"
+          alt="Digital Marketing Banner">
+      </div>
+  
+      <div class="course-header">
+        <h1>{{ course.title }}</h1>
+        <div class="course-meta">
+          <div class="instructor">Instructor: <span class="instructor-name">{{ course.author }}</span></div>
+          <div class="duration">Duration: {{ course.duration }}</div>
+        </div>
+      </div>
+  
+      <mat-tab-group (selectedTabChange)="onTabChange($event)">
+        <mat-tab label="Day 1">
+          <div class="course-content">
+            <h2>Day 1: {{ course.days[0].title }}</h2>
+  
+            <div class="video-player">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                [src]="getSafeVideoUrl(course.days[0].videoLink)" 
+                title="Course Video" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+  
+            <div class="lesson-info">
+              <h3>Today's Lesson</h3>
+              <p>{{ course.days[0].description }}</p>
+            </div>
+  
+            <div class="topics-covered">
+              <h3>Topics Covered</h3>
+              <ul>
+                <li *ngFor="let topic of course.days[0].topics">{{ topic }}</li>
+              </ul>
+            </div>
+  
+            <div class="course-description">
+              <h3>Course Description</h3>
+              <p>{{ course.description }}</p>
+            </div>
+          </div>
+        </mat-tab>
+  
+        <mat-tab label="Day 2">
+          <div class="course-content">
+            <h2>Day 2: {{ course.days[1].title }}</h2>
+  
+            <div class="video-player">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                [src]="getSafeVideoUrl(course.days[1].videoLink)" 
+                title="Course Video" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+  
+            <div class="lesson-info">
+              <h3>Today's Lesson</h3>
+              <p>{{ course.days[1].description }}</p>
+            </div>
+  
+            <div class="topics-covered">
+              <h3>Topics Covered</h3>
+              <ul>
+                <li *ngFor="let topic of course.days[1].topics">{{ topic }}</li>
+              </ul>
+            </div>
+  
+            <div class="course-description">
+              <h3>Course Description</h3>
+              <p>{{ course.description }}</p>
+            </div>
+          </div>
+        </mat-tab>
+  
+        <mat-tab label="Day 3">
+          <div class="course-content">
+            <h2>Day 3: {{ course.days[2].title }}</h2>
+  
+            <div class="video-player">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                [src]="getSafeVideoUrl(course.days[2].videoLink)" 
+                title="Course Video" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+  
+            <div class="lesson-info">
+              <h3>Today's Lesson</h3>
+              <p>{{ course.days[2].description }}</p>
+            </div>
+  
+            <div class="topics-covered">
+              <h3>Topics Covered</h3>
+              <ul>
+                <li *ngFor="let topic of course.days[2].topics">{{ topic }}</li>
+              </ul>
+            </div>
+  
+            <div class="course-description">
+              <h3>Course Description</h3>
+              <p>{{ course.description }}</p>
+            </div>
+          </div>
+        </mat-tab>
+  
+        <mat-tab label="Day 4">
+          <div class="course-content">
+            <h2>Day 4: {{ course.days[3].title }}</h2>
+  
+            <div class="video-player">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                [src]="getSafeVideoUrl(course.days[3].videoLink)" 
+                title="Course Video" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+  
+            <div class="lesson-info">
+              <h3>Today's Lesson</h3>
+              <p>{{ course.days[3].description }}</p>
+            </div>
+  
+            <div class="topics-covered">
+              <h3>Topics Covered</h3>
+              <ul>
+                <li *ngFor="let topic of course.days[3].topics">{{ topic }}</li>
+              </ul>
+            </div>
+  
+            <div class="course-description">
+              <h3>Course Description</h3>
+              <p>{{ course.description }}</p>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  
+    <footer class="dashboard-footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#">Languages</a>
+          <a href="#">About Us</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Refund Policy</a>
+        </div>
+        <div class="copyright">
+          Copyright © 2025 CloudIn
+        </div>
+        <div class="powered-by">
+          Powered by <span>Inspite Technology</span>
+        </div>
+      </div>
+    </footer>
+  </div>

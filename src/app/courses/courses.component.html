@@ -1,0 +1,34 @@
+
+<div class="course-page-banner">
+    <div class="course-page-overlay">
+      <h2>Courses</h2>
+    </div>
+</div>
+
+<section class="course-page-wrapper">
+    <div class="course-page-header">
+      
+      <div class="course-page-filters">
+        <button *ngFor="let filter of courseFilters" class="course-page-filter-btn">
+          {{ filter }}
+        </button>
+      </div>
+    </div>
+
+    <div class="course-page-grid">
+      <div *ngFor="let course of courses" class="course-page-card">
+        <div class="course-page-badge" [ngStyle]="{ 'background-color': getBadgeColor(course.badge) }" *ngIf="course.badge">
+          {{ course.badge }}
+        </div>
+        <img [src]="course.image" alt="{{ course.title }}" class="course-page-image">
+        <div class="course-page-details">
+          <h3>{{ course.title }}</h3>
+          <p>{{ course.description }}</p>
+          <div class="course-page-meta">
+            <span><i class="bi bi-layers"></i> {{ course.modules }} Modules</span>
+            <span><i class="bi bi-clock"></i> {{ course.duration }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

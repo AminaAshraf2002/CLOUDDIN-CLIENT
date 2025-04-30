@@ -1,0 +1,212 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="admin-container">
+    <!-- Sidebar - Same as Dashboard -->
+    <div class="sidebar">
+        <div class="logo-area">
+            <img src="assets/images/logo.png" alt="ClouddIn Logo" class="logo">
+            <span class="logo-text">ClouddIn Admin</span>
+        </div>
+        
+        <nav class="menu">
+            <a href="admin/dashboard" class="menu-item">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="admin/user" class="menu-item">
+                <i class="fas fa-users"></i>
+                <span>Users</span>
+            </a>
+            <!-- <a href="admin/courses" class="menu-item">
+                <i class="fas fa-book"></i>
+                <span>Courses</span>
+            </a> -->
+            <a href="admin/categories" class="menu-item active">
+                <i class="fas fa-list"></i>
+                <span>Categories</span>
+            </a>
+            <a href="admin/lessons" class="menu-item">
+                <i class="fas fa-video"></i>
+                <span>Lessons</span>
+            </a>
+            <a href="/" class="menu-item">
+                <i class="fas fa-money-check"></i>
+                <span>Logout</span>
+            </a>
+        </nav>
+    </div>
+    
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Top Header -->
+        <header class="top-header">
+            <h1>Course Management</h1>
+            <div class="admin-profile">
+                <span>Admin</span>
+                <div class="avatar">A</div>
+            </div>
+        </header>
+        
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Header with Search and Filters -->
+            <div class="header-actions">
+                <div class="search-filters">
+                    <input type="text" placeholder="Search courses..." class="search-input">
+                    <select class="filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="digital-marketing">Digital Marketing</option>
+                        <option value="graphic-design">Graphic Design</option>
+                        <option value="ecommerce">Ecommerce</option>
+                        
+                    </select>
+                </div>
+                <button class="add-course-btn">
+                    <i class="fas fa-plus"></i>
+                    Add New Course
+                </button>
+            </div>
+            
+            <!-- Courses Grid -->
+            <div class="courses-grid">
+                <!-- Course Card 1 -->
+                <div class="course-card">
+                    <img src="https://via.placeholder.com/350x180" alt="Digital Marketing Masterclass" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">Digital Marketing Masterclass</h3>
+                        <div class="course-instructor">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Sarah Johnson, Expert</span>
+                        </div>
+                        <div class="course-stats">
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.8 (243 reviews)</span>
+                            </div>
+                            <div class="course-enrollments">
+                                <span>48 enrollments</span>
+                            </div>
+                        </div>
+                        <div class="course-price">
+                            <span class="current-price">₹699</span>
+                            <span class="original-price">₹1,999</span>
+                            <span class="premium-badge">Premium</span>
+                        </div>
+                        <div class="course-actions">
+                            <button class="view-btn">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                            <button class="edit-btn">
+                                <i class="fas fa-edit"></i>
+                                Edit
+                            </button>
+                            <button class="delete-btn">
+                                <i class="fas fa-trash"></i>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Course Card 2 -->
+                <div class="course-card">
+                    <img src="https://via.placeholder.com/350x180" alt="Graphic Designing Pro" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">Graphic Designing Pro</h3>
+                        <div class="course-instructor">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Michael Chen, Design Professional</span>
+                        </div>
+                        <div class="course-stats">
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.7 (1893 reviews)</span>
+                            </div>
+                            <div class="course-enrollments">
+                                <span>32 enrollments</span>
+                            </div>
+                        </div>
+                        <div class="course-price">
+                            <span class="current-price">₹599</span>
+                            <span class="original-price">₹1,499</span>
+                            <span class="premium-badge">Premium</span>
+                        </div>
+                        <div class="course-actions">
+                            <button class="view-btn">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                            <button class="edit-btn">
+                                <i class="fas fa-edit"></i>
+                                Edit
+                            </button>
+                            <button class="delete-btn">
+                                <i class="fas fa-trash"></i>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Course Card 3 -->
+                <div class="course-card">
+                    <img src="https://via.placeholder.com/350x180" alt="Ecommerce Mastery" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">Ecommerce Mastery</h3>
+                        <div class="course-instructor">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>David Martinez & Emma Wilson</span>
+                        </div>
+                        <div class="course-stats">
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.9 (3218 reviews)</span>
+                            </div>
+                            <div class="course-enrollments">
+                                <span>29 enrollments</span>
+                            </div>
+                        </div>
+                        <div class="course-price">
+                            <span class="current-price">₹799</span>
+                            <span class="original-price">₹2,499</span>
+                            <span class="premium-badge">Premium</span>
+                        </div>
+                        <div class="course-actions">
+                            <button class="view-btn">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                            <button class="edit-btn">
+                                <i class="fas fa-edit"></i>
+                                Edit
+                            </button>
+                            <button class="delete-btn">
+                                <i class="fas fa-trash"></i>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+              
+                
+                
+                
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <div class="page-info">
+                    Showing 1 to 6 of 12 entries
+                </div>
+                <div class="page-controls">
+                    <button class="page-nav">Previous</button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-nav">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

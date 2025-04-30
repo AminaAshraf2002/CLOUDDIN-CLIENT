@@ -1,0 +1,250 @@
+<app-header></app-header>
+
+<div class="home-container">
+  <!-- Header -->
+  <header class="py-5">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="assets/images/thum2.png" class="d-block w-100" alt="Banner 1">
+        </div>
+        <div class="carousel-item">
+          <img src="assets/images/thum1.png" class="d-block w-100" alt="...">
+        </div>
+
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="featured-courses-container">
+    <div class="section-header">
+      <h2>All the skills you need in one place</h2>
+      <p>From critical skills to technical topics, ClouddIn supports your professional development.</p>
+    </div>
+    
+    <!-- Mat-Tab Structure with Course Grid -->
+    <mat-tab-group (selectedIndexChange)="selectedCategory = categories[$event]">
+      <mat-tab *ngFor="let category of categories" [label]="category">
+        <div class="courses-grid">
+          <div *ngFor="let course of filteredCourses" class="course-card-container">
+            <!-- Main Card -->
+            <div class="course-card" (click)="viewMore(course)">
+              <div class="course-image-container">
+                <img [src]="course.image" alt="{{ course.title }}" class="course-image">
+              </div>
+              
+              <div class="course-details">
+                <h3>{{ course.title }}</h3>
+                <p class="course-author">{{ course.author }}</p>
+                <div class="course-rating">
+                  <span class="rating-score">{{ course.rating }}</span>
+                  <span class="rating-stars">★★★★☆</span>
+                  <span class="rating-count">({{ course.reviewCount }})</span>
+                </div>
+                <div class="course-price">
+                  <span class="current-price">₹{{ course.currentPrice }}</span>
+                  <span class="original-price">₹{{ course.originalPrice }}</span>
+                </div>
+                
+                <!-- Badges at the bottom of card -->
+                <div class="course-badges">
+                  <span class="badge premium" *ngIf="course.isPremium">
+                    <i class="bi bi-gem"></i> Premium
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Separate Overlay Card - styled like Udemy's -->
+            <div class="hover-overlay">
+              <!-- Course title and details -->
+              <h2>{{ course.title }}</h2>
+              <p class="updated">Updated <span>{{ course.lastUpdated }}</span></p>
+              <p class="course-stats">{{ course.duration }} · {{ course.level }} · {{ course.subtitles }}</p>
+              
+              <!-- Description bullet points -->
+              <p class="course-description">{{ course.shortDescription }}</p>
+              
+              <ul class="feature-list">
+                <li *ngFor="let feature of course.features">
+                  <i class="bi bi-check"></i> {{ feature }}
+                </li>
+              </ul>
+              
+              <!-- Add to cart button with navigation -->
+              <button class="add-to-cart-btn" (click)="viewMore(course)">PURCHASE</button>
+              
+              <!-- Badges at top of overlay -->
+              <div class="overlay-badges">
+                <span class="badge premium" *ngIf="course.isPremium">
+                  <i class="bi bi-gem"></i> Premium
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </section>
+
+  <!-- About Us -->
+  <section class="about-us">
+    <div class="container">
+      <!-- Left Side Content -->
+      <div class="content">
+        <span class="badge">Who We Are</span>
+        <h1>
+          Learn From <span class="highlight">Industry Experts</span> Across The
+          Globe
+        </h1>
+        <p>
+          Cloudd In is an e-learning platform based in Kerala, India, focusing on business studies with expert instructors. We leverage cloud computing to provide scalable, customizable, and cost-effective learning solutions
+        </p>
+        <div class="stats">
+          <div class="stat-item">
+            <span class="stat-number">10+</span>
+            <span class="stat-text">Expert Trainers</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-text">Successful Graduates</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">1000+</span>
+            <span class="stat-text">Specialized Modules</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side Image -->
+      <div class="image">
+        <img src="assets/images/banner1.jpeg" alt="cloud" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Learning Like Never Before -->
+  <section class="experience-learning">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="experience-content">
+        <h2>Experience Learning Like Never Before</h2>
+        <div class="experience-box">
+          <div class="experience-item">
+            <div class="number-box">1</div>
+            <div class="experience-text">
+              <h3>Interactive Video Lessons</h3>
+              <p>Engage with dynamic video content, quizzes, and interactive exercises.</p>
+            </div>
+          </div>
+          <div class="experience-item">
+            <div class="number-box">2</div>
+            <div class="experience-text">
+              <h3>Personalized Learning Paths</h3>
+              <p>Tailored learning experiences based on your goals and progress.</p>
+            </div>
+          </div>
+          <div class="experience-item">
+            <div class="number-box">3</div>
+            <div class="experience-text">
+              <h3>Community Forums</h3>
+              <p>Connect with fellow learners and instructors in collaborative discussion forums.</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Registration Process Section -->
+<section class="registration-process">
+  <div class="registration-container">
+    <!-- Section Header -->
+    <div class="registration-header">
+      <span class="registration-badge">Easy Registration</span>
+      <h2>How to <span class="highlight">Get Started</span></h2>
+      <p>Follow these simple steps to register, pay, and start learning in our courses.</p>
+    </div>
+    
+    <!-- Steps Container -->
+    <div class="registration-steps">
+      <!-- Step 1 -->
+      <div class="reg-step">
+        <div class="step-icon">
+          <div class="icon-circle">
+            <i class="step-number">1</i>
+          </div>
+          <img src="https://cdn-icons-png.flaticon.com/512/2082/2082875.png" alt="Register Account">
+        </div>
+        <h3>Register Account</h3>
+        <p>Create your account with basic details like name, email, and contact information.</p>
+      </div>
+      
+      <!-- Step 2 -->
+      <div class="reg-step">
+        <div class="step-icon">
+          <div class="icon-circle">
+            <i class="step-number">2</i>
+          </div>
+          <img src="https://cdn-icons-png.flaticon.com/512/2331/2331941.png" alt="Select Course">
+        </div>
+        <h3>Select Course</h3>
+        <p>Browse our catalog and select the course that matches your learning goals.</p>
+      </div>
+      
+      <!-- Step 3 -->
+      <div class="reg-step">
+        <div class="step-icon">
+          <div class="icon-circle">
+            <i class="step-number">3</i>
+          </div>
+          <img src="https://cdn-icons-png.flaticon.com/512/4222/4222019.png" alt="Make Payment">
+        </div>
+        <h3>Make Payment</h3>
+        <p>Complete your enrollment by making a secure payment through multiple options.</p>
+      </div>
+      
+      <!-- Step 4 -->
+      <div class="reg-step">
+        <div class="step-icon">
+          <div class="icon-circle">
+            <i class="step-number">4</i>
+          </div>
+          <img src="https://cdn-icons-png.flaticon.com/512/1791/1791961.png" alt="Login & Start">
+        </div>
+        <h3>Login & Start</h3>
+        <p>Login to your account to access course materials and begin your learning journey.</p>
+      </div>
+    </div>
+    
+    <!-- Registration CTA -->
+    <div class="registration-cta">
+      <h3>Ready to enhance your skills?</h3>
+      <p>Join our learning platform and get access to premium courses with expert instructors.</p>
+      <div class="cta-buttons">
+        <a href="register" class="primary-btn">Register Now</a>
+      </div>
+      <div class="payment-options">
+        <p>Secure Payment Options:</p>
+        <div class="payment-icons">
+          <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Visa">
+          <img src="https://cdn-icons-png.flaticon.com/512/196/196565.png" alt="PayPal">
+          <img src="https://brandlogos.net/wp-content/uploads/2021/10/google-pay-logo-512x512.png" alt="Google Pay">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <app-footer></app-footer>

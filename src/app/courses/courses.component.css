@@ -1,0 +1,173 @@
+/* General Wrapper */
+.course-page-wrapper {
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Banner Section */
+.course-page-banner {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: url('/assets/images/course1.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.course-page-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.course-page-banner h2 {
+    color: white;
+    font-size: 38px;
+    font-weight: bold;
+}
+
+/* Page Header */
+.course-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.course-page-header h2 {
+    color: #333;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Filter Buttons */
+.course-page-filters {
+    display: flex;
+    gap: 1rem;
+}
+
+.course-page-filter-btn {
+    background-color: transparent;
+    border: 1px solid #60a2ea;
+    color: #60a2ea;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.course-page-filter-btn:hover {
+    background-color: #80bdff;
+    color: white;
+}
+
+/* Course Grid */
+.course-page-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.course-page-card {
+    width: calc((100% - 4rem) / 3); /* Ensures 3 cards per row */
+    max-width: 350px; /* Ensures a max width */
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.course-page-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Badge with One-Side Fully Rounded */
+.course-page-badge {
+    position: absolute;
+    top: 218px;
+    left: 230px;
+   
+    color: white;
+    padding: 6px 20px;
+    border-radius: 20px 0 0 20px; /* Left side fully rounded */
+    font-size: 0.85rem;
+    font-weight: bold;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Shimmer Effect on Badge */
+.course-page-badge::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    animation: shimmer 2s infinite;
+    border-radius: 20px 0 0 20px;
+}
+
+/* Course Image */
+.course-page-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* Course Details */
+.course-page-details {
+    padding: 1rem;
+}
+
+.course-page-details h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.course-page-details p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.course-page-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+    0% { left: -50%; }
+    100% { left: 50%; }
+}
+
+/* Fade-In Animation */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
