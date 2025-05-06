@@ -197,17 +197,27 @@ export class LessonsComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
   
-  // NEW METHOD: Convert any YouTube URL to embed format
-  prepareVideoUrl(url: string | undefined): string {
-    if (!url || url.trim() === '') return '';
+  // Modified method to handle both URLs and iframe embed code
+  prepareVideoUrl(input: string | undefined): string {
+    if (!input || input.trim() === '') return '';
     
-    // Already an embed URL
-    if (url.includes('/embed/')) return url;
+    // Check if it's an iframe embed code
+    if (input.includes('<iframe') && input.includes('</iframe>')) {
+      // Extract the src attribute from the iframe
+      const srcMatch = input.match(/src=["'](.*?)["']/i);
+      if (srcMatch && srcMatch[1]) {
+        console.log('Extracted src from iframe:', srcMatch[1]);
+        return srcMatch[1]; // Return just the URL from src attribute
+      }
+    }
+    
+    // Handle regular YouTube URLs as before
+    if (input.includes('/embed/')) return input;
     
     try {
       // Convert YouTube watch URLs to embed format
-      if (url.includes('youtube.com/watch')) {
-        const urlObj = new URL(url);
+      if (input.includes('youtube.com/watch')) {
+        const urlObj = new URL(input);
         const videoId = urlObj.searchParams.get('v');
         if (videoId) {
           return `https://www.youtube.com/embed/${videoId}`;
@@ -215,18 +225,18 @@ export class LessonsComponent implements OnInit {
       }
       
       // Convert YouTube short links
-      if (url.includes('youtu.be/')) {
-        const videoId = url.split('youtu.be/')[1].split('?')[0];
+      if (input.includes('youtu.be/')) {
+        const videoId = input.split('youtu.be/')[1].split('?')[0];
         if (videoId) {
           return `https://www.youtube.com/embed/${videoId}`;
         }
       }
       
       // Return original URL if no conversions matched
-      return url;
+      return input;
     } catch (error) {
       console.error('Error converting video URL:', error);
-      return url;
+      return input;
     }
   }
   
@@ -238,17 +248,32 @@ export class LessonsComponent implements OnInit {
     return videoId ? `https://img.youtube.com/vi/${videoId}/0.jpg` : 'https://via.placeholder.com/300x200?text=Invalid+URL';
   }
   
-  // Extract Video ID
-  private extractVideoId(url: string): string {
-    if (!url) return '';
+  // Extract Video ID - updated to handle iframe embed codes
+  private extractVideoId(input: string): string {
+    if (!input) return '';
     
+    // Handle iframe embed code
+    if (input.includes('<iframe') && input.includes('</iframe>')) {
+      const srcMatch = input.match(/src=["'](.*?)["']/i);
+      if (srcMatch && srcMatch[1]) {
+        // Now extract video ID from the src URL
+        const srcUrl = srcMatch[1];
+        if (srcUrl.includes('/embed/')) {
+          const embedMatch = srcUrl.match(/\/embed\/([^?&]+)/);
+          return embedMatch && embedMatch[1] ? embedMatch[1] : '';
+        }
+      }
+      return '';
+    }
+    
+    // Handle regular URLs as before
     let match;
-    if (url.includes('/embed/')) {
-      match = url.match(/\/embed\/([^?&]+)/);
-    } else if (url.includes('youtube.com/watch')) {
-      match = url.match(/v=([^?&]+)/);
-    } else if (url.includes('youtu.be/')) {
-      match = url.match(/youtu\.be\/([^?&]+)/);
+    if (input.includes('/embed/')) {
+      match = input.match(/\/embed\/([^?&]+)/);
+    } else if (input.includes('youtube.com/watch')) {
+      match = input.match(/v=([^?&]+)/);
+    } else if (input.includes('youtu.be/')) {
+      match = input.match(/youtu\.be\/([^?&]+)/);
     }
     
     return match && match[1] ? match[1] : '';
@@ -317,12 +342,13 @@ export class LessonsComponent implements OnInit {
     }
   }
   
-  // Save Lesson - UPDATED to convert video URL
+  // Save Lesson - UPDATED to handle iframe embed codes
   saveLesson(): void {
     if (!this.currentLesson) return;
     
-    // Convert video URL to embed format before saving
+    // Handle video URL or iframe embed
     if (this.currentLesson.videoUrl) {
+      // Extract the video URL from the current lesson's videoUrl
       this.currentLesson.videoUrl = this.prepareVideoUrl(this.currentLesson.videoUrl);
       console.log('Saving with video URL:', this.currentLesson.videoUrl);
     }
