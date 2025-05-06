@@ -91,31 +91,45 @@ export class LessonViewerComponent implements OnInit, OnDestroy {
     return 0;
   }
 
-  // Extract video ID from various YouTube URL formats
-  extractVideoId(url: string): string {
-    if (!url) return '';
+  // Extract video ID from various YouTube URL formats and iframe embeds
+  extractVideoId(input: string): string {
+    if (!input) return '';
     
     try {
+      // Handle iframe embed code
+      if (input.includes('<iframe') && input.includes('</iframe>')) {
+        const srcMatch = input.match(/src=["'](.*?)["']/i);
+        if (srcMatch && srcMatch[1]) {
+          // Now extract video ID from the src URL
+          const srcUrl = srcMatch[1];
+          if (srcUrl.includes('/embed/')) {
+            const embedMatch = srcUrl.match(/\/embed\/([^?&]+)/);
+            return embedMatch && embedMatch[1] ? embedMatch[1] : '';
+          }
+        }
+        return '';
+      }
+      
       // Extract from embed URL
-      if (url.includes('/embed/')) {
-        const match = url.match(/\/embed\/([^?&]+)/);
+      if (input.includes('/embed/')) {
+        const match = input.match(/\/embed\/([^?&]+)/);
         return match && match[1] ? match[1] : '';
       }
       
       // Extract from regular YouTube URL
-      if (url.includes('youtube.com/watch')) {
-        const urlObj = new URL(url);
+      if (input.includes('youtube.com/watch')) {
+        const urlObj = new URL(input);
         return urlObj.searchParams.get('v') || '';
       }
       
       // Extract from short YouTube URL
-      if (url.includes('youtu.be/')) {
-        return url.split('youtu.be/')[1].split('?')[0];
+      if (input.includes('youtu.be/')) {
+        return input.split('youtu.be/')[1].split('?')[0];
       }
       
       // Extract from thumbnail URL
-      if (url.includes('img.youtube.com/vi/')) {
-        const parts = url.split('/');
+      if (input.includes('img.youtube.com/vi/')) {
+        const parts = input.split('/');
         const videoIdIndex = parts.indexOf('vi') + 1;
         if (videoIdIndex < parts.length) {
           return parts[videoIdIndex].split('/')[0];
@@ -129,19 +143,29 @@ export class LessonViewerComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Convert any YouTube URL to embed format
-  private prepareVideoUrl(url: string | undefined): string | null {
-    if (!url) return null;
+  // Convert any YouTube URL or iframe embed code to embed format
+  private prepareVideoUrl(input: string | undefined): string | null {
+    if (!input) return null;
     
-    console.log('Original video URL:', url);
+    console.log('Original video URL/embed:', input);
+    
+    // Check if it's an iframe embed code
+    if (input.includes('<iframe') && input.includes('</iframe>')) {
+      // Extract the src attribute from the iframe
+      const srcMatch = input.match(/src=["'](.*?)["']/i);
+      if (srcMatch && srcMatch[1]) {
+        console.log('Extracted src from iframe:', srcMatch[1]);
+        return srcMatch[1]; // Return just the URL from src attribute
+      }
+    }
     
     // Already an embed URL
-    if (url.includes('/embed/')) return url;
+    if (input.includes('/embed/')) return input;
     
     try {
       // Convert YouTube watch URLs to embed format
-      if (url.includes('youtube.com/watch')) {
-        const urlObj = new URL(url);
+      if (input.includes('youtube.com/watch')) {
+        const urlObj = new URL(input);
         const videoId = urlObj.searchParams.get('v');
         if (videoId) {
           const embedUrl = `https://www.youtube.com/embed/${videoId}`;
@@ -151,8 +175,8 @@ export class LessonViewerComponent implements OnInit, OnDestroy {
       }
       
       // Convert YouTube short links
-      if (url.includes('youtu.be/')) {
-        const videoId = url.split('youtu.be/')[1].split('?')[0];
+      if (input.includes('youtu.be/')) {
+        const videoId = input.split('youtu.be/')[1].split('?')[0];
         if (videoId) {
           const embedUrl = `https://www.youtube.com/embed/${videoId}`;
           console.log('Converted short URL to embed URL:', embedUrl);
@@ -161,8 +185,8 @@ export class LessonViewerComponent implements OnInit, OnDestroy {
       }
       
       // Convert YouTube thumbnails to embeds
-      if (url.includes('img.youtube.com/vi/')) {
-        const parts = url.split('/');
+      if (input.includes('img.youtube.com/vi/')) {
+        const parts = input.split('/');
         const videoIdIndex = parts.indexOf('vi') + 1;
         if (videoIdIndex < parts.length) {
           const videoId = parts[videoIdIndex].split('/')[0];
@@ -173,10 +197,10 @@ export class LessonViewerComponent implements OnInit, OnDestroy {
       }
       
       // Return original URL if no conversions matched
-      return url;
+      return input;
     } catch (error) {
       console.error('Error converting video URL:', error);
-      return url;
+      return input;
     }
   }
 
@@ -300,7 +324,7 @@ export class LessonViewerComponent implements OnInit, OnDestroy {
           
           // Sanitize video URL if present
           if (lesson.videoUrl) {
-            console.log('Raw video URL:', lesson.videoUrl);
+            console.log('Raw video URL/embed code:', lesson.videoUrl);
             
             // Make sure we have the correct embed URL format
             const embedUrl = this.prepareVideoUrl(lesson.videoUrl);
