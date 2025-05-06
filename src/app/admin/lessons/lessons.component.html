@@ -274,9 +274,8 @@
             type="text" 
             class="form-input" 
             [(ngModel)]="currentLesson.videoUrl"
-            placeholder="Enter YouTube video URL or iframe embed code"
+            placeholder="Enter YouTube video URL"
           >
-          <small class="form-hint">You can paste a YouTube URL or the full iframe embed code</small>
           <div class="video-preview" *ngIf="currentLesson.videoUrl">
             <div class="thumbnail-preview">
               <img 
