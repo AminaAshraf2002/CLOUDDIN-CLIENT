@@ -1,245 +1,9 @@
 /* Lesson Viewer Page Styling */
 .course-container {
-   
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: 40px;
-    background-color: #f9fafb;
-  }
-  
-  .back-link {
-    display: inline-flex;
-    align-items: center;
-    color: #0a2c3b;
-    text-decoration: none;
-    margin: 20px 0;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    gap: 10px;
-  }
-  
-  .back-link:hover {
-    color: #87CEEB;
-    transform: translateX(-5px);
-  }
-  
-  .back-link i {
-    transition: transform 0.3s ease;
-  }
-  .course-header {
-    background: linear-gradient(135deg, #0a2c3b 0%, #1c5d8a 100%);
-    color: white;
-    padding: clamp(20px, 4vw, 30px); /* Responsive padding */
-    border-radius: 12px;
-    margin-bottom: clamp(20px, 4vw, 30px); /* Responsive margin */
-    box-shadow: 0 10px 20px rgba(10, 44, 59, 0.2);
-    position: relative;
-    overflow: hidden;
-    text-align: center; /* Center content for better appearance */
-}
-
-/* Gradient animation for dynamic effect */
-.course-header::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(135, 206, 235, 0.2) 0%, transparent 70%);
-    z-index: 1;
-    animation: pulseEffect 6s infinite alternate ease-in-out;
-}
-
-/* Responsive Typography */
-.course-header h1 {
-    font-size: clamp(18px, 5vw, 32px); /* Responsive heading */
-    margin: 0;
-}
-
-.course-header p {
-    font-size: clamp(14px, 3.5vw, 18px); /* Responsive text */
-    opacity: 0.9;
-}
-
-/* Animation for subtle glowing effect */
-@keyframes pulseEffect {
-    0% {
-        transform: scale(1);
-        opacity: 0.6;
-    }
-    100% {
-        transform: scale(1.2);
-        opacity: 0.9;
-    }
-}
-
-/* Media Queries for Additional Fine-tuning */
-@media (max-width: 768px) {
-    .course-header {
-        padding: 20px;
-        border-radius: 8px;
-    }
-}
-
-@media (max-width: 480px) {
-    .course-header {
-        padding: 15px;
-        border-radius: 6px;
-    }
-}
-
-  .course-header h2 {
-    color: white;
-    margin-bottom: 15px;
-    font-size: 28px;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .course-header p {
-    color: rgba(255, 255, 255, 0.8);
-    margin: 10px 0;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .lesson-content {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin-bottom: 30px;
-  }
-  
-  .lesson-content h3 {
-    color: #0a2c3b;
-    margin-bottom: 20px;
-    font-size: 24px;
-    border-bottom: 2px solid #87CEEB;
-    padding-bottom: 10px;
-  }
-  
-  .video-container {
-    margin-bottom: 30px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .video-container:hover {
-    transform: scale(1.02);
-  }
-  
-  .lesson-description {
-    background-color: #f4f5f7;
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    border-left: 5px solid #87CEEB;
-  }
-  
-  .lesson-description p {
-    line-height: 1.7;
-    color: #333;
-    font-size: 16px;
-  }
-  
-  .topics-covered {
-    background-color: #f4f5f7;
-    padding: 25px;
-    border-radius: 12px;
-    border-left: 5px solid #0a2c3b;
-  }
-  
-  .topics-covered h4 {
-    color: #0a2c3b;
-    margin-bottom: 20px;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .topics-covered h4::before {
-    content: '•';
-    color: #87CEEB;
-    margin-right: 10px;
-    font-size: 24px;
-  }
-  
-  .topics-covered ul {
-    padding-left: 20px;
-    list-style-type: none;
-  }
-  
-  .topics-covered li {
-    margin-bottom: 12px;
-    color: #333;
-    position: relative;
-    padding-left: 20px;
-  }
-  
-  .topics-covered li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: #87CEEB;
-    font-weight: bold;
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .course-header {
-      padding: 20px;
-    }
-  
-    .course-header h2 {
-      font-size: 24px;
-    }
-  
-    .lesson-content {
-      padding: 20px;
-    }
-  
-    .video-container iframe {
-      height: 250px;
-    }
-  
-    .lesson-description,
-    .topics-covered {
-      padding: 15px;
-    }
-  }
-  
-  /* Accessibility and Interaction Enhancements */
-  @media (hover: hover) {
-    .video-container,
-    .lesson-description,
-    .topics-covered {
-      transition: all 0.3s ease;
-    }
-  
-    .video-container:hover,
-    .lesson-description:hover,
-    .topics-covered:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-    }
-  }
-  /* Lesson Viewer Page Styling */
-.lesson-viewer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding-bottom: 40px;
   background-color: #f9fafb;
-}
-
-.lesson-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
 }
 
 .back-link {
@@ -247,6 +11,7 @@
   align-items: center;
   color: #0a2c3b;
   text-decoration: none;
+  margin: 20px 0;
   font-weight: bold;
   transition: all 0.3s ease;
   gap: 10px;
@@ -259,6 +24,220 @@
 
 .back-link i {
   transition: transform 0.3s ease;
+}
+
+.course-header {
+  background: linear-gradient(135deg, #0a2c3b 0%, #1c5d8a 100%);
+  color: white;
+  padding: clamp(20px, 4vw, 30px); /* Responsive padding */
+  border-radius: 12px;
+  margin-bottom: clamp(20px, 4vw, 30px); /* Responsive margin */
+  box-shadow: 0 10px 20px rgba(10, 44, 59, 0.2);
+  position: relative;
+  overflow: hidden;
+  text-align: center; /* Center content for better appearance */
+}
+
+/* Gradient animation for dynamic effect */
+.course-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(135, 206, 235, 0.2) 0%, transparent 70%);
+  z-index: 1;
+  animation: pulseEffect 6s infinite alternate ease-in-out;
+}
+
+/* Responsive Typography */
+.course-header h1 {
+  font-size: clamp(18px, 5vw, 32px); /* Responsive heading */
+  margin: 0;
+}
+
+.course-header p {
+  font-size: clamp(14px, 3.5vw, 18px); /* Responsive text */
+  opacity: 0.9;
+}
+
+/* Animation for subtle glowing effect */
+@keyframes pulseEffect {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+}
+
+.course-header h2 {
+  color: white;
+  margin-bottom: 15px;
+  font-size: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.course-header p {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 10px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.lesson-content {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.lesson-content h3 {
+  color: #0a2c3b;
+  margin-bottom: 20px;
+  font-size: 24px;
+  border-bottom: 2px solid #87CEEB;
+  padding-bottom: 10px;
+}
+
+/* Updated Video Container with proper aspect ratio */
+.video-container {
+  margin-bottom: 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  /* Set a specific aspect ratio for consistent display */
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (9/16 = 0.5625 or 56.25%) */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Video thumbnail styling */
+.video-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Play button overlay */
+.play-button-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background-color: rgba(10, 44, 59, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.3s ease;
+}
+
+.play-button-overlay:hover {
+  background-color: rgba(10, 44, 59, 0.9);
+}
+
+.play-button-overlay i {
+  color: white;
+  font-size: 30px;
+}
+
+.video-container:hover {
+  transform: scale(1.02);
+}
+
+.lesson-description {
+  background-color: #f4f5f7;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  border-left: 5px solid #87CEEB;
+}
+
+.lesson-description p {
+  line-height: 1.7;
+  color: #333;
+  font-size: 16px;
+}
+
+.topics-covered {
+  background-color: #f4f5f7;
+  padding: 25px;
+  border-radius: 12px;
+  border-left: 5px solid #0a2c3b;
+}
+
+.topics-covered h4 {
+  color: #0a2c3b;
+  margin-bottom: 20px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.topics-covered h4::before {
+  content: '•';
+  color: #87CEEB;
+  margin-right: 10px;
+  font-size: 24px;
+}
+
+.topics-covered ul {
+  padding-left: 20px;
+  list-style-type: none;
+}
+
+.topics-covered li {
+  margin-bottom: 12px;
+  color: #333;
+  position: relative;
+  padding-left: 20px;
+}
+
+.topics-covered li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #87CEEB;
+  font-weight: bold;
+}
+
+/* Lesson Viewer Page Styling */
+.lesson-viewer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9fafb;
+}
+
+.lesson-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .logo img {
@@ -306,15 +285,6 @@
   background-color: #1c5d8a;
 }
 
-/* Lesson Content */
-.lesson-content {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  margin-bottom: 30px;
-}
-
 .lesson-title-section {
   margin-bottom: 30px;
   border-bottom: 2px solid #87CEEB;
@@ -327,44 +297,10 @@
   margin: 0;
 }
 
-/* Video Container */
-.video-container {
-  margin-bottom: 30px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.video-container iframe {
-  width: 100%;
-  height: 500px;
-  border: none;
-}
-
-.video-container:hover {
-  transform: scale(1.02);
-}
-
-/* Lesson Description */
-.lesson-description {
-  background-color: #f4f5f7;
-  padding: 25px;
-  border-radius: 12px;
-  margin-bottom: 30px;
-  border-left: 5px solid #87CEEB;
-}
-
 .lesson-description h2 {
   color: #0a2c3b;
   margin-bottom: 15px;
   font-size: 22px;
-}
-
-.lesson-description p {
-  line-height: 1.7;
-  color: #333;
-  font-size: 16px;
 }
 
 /* Topics Section */
@@ -423,25 +359,55 @@
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-  .lesson-viewer-container {
-      padding: 10px;
+  .course-header {
+    padding: 20px;
+  }
+
+  .course-header h2 {
+    font-size: 24px;
   }
 
   .lesson-content {
-      padding: 20px;
+    padding: 20px;
   }
 
-  .video-container iframe {
-      height: 250px;
+  .lesson-viewer-container {
+    padding: 10px;
+  }
+
+  .play-button-overlay {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .play-button-overlay i {
+    font-size: 24px;
   }
 
   .lesson-title-section h1 {
-      font-size: 24px;
+    font-size: 24px;
   }
 
   .lesson-description,
-  .topics-section {
-      padding: 15px;
+  .topics-section,
+  .topics-covered {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .course-header {
+    padding: 15px;
+    border-radius: 6px;
+  }
+  
+  .play-button-overlay {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .play-button-overlay i {
+    font-size: 20px;
   }
 }
 
@@ -449,14 +415,16 @@
 @media (hover: hover) {
   .video-container,
   .lesson-description,
+  .topics-covered,
   .topics-section {
-      transition: all 0.3s ease;
+    transition: all 0.3s ease;
   }
 
   .video-container:hover,
   .lesson-description:hover,
+  .topics-covered:hover,
   .topics-section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
   }
 }
